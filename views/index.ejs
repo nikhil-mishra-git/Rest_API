@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>API Documentation</title>
+    <style>
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+            background-color: #f8fafc;
+            color: #1e293b;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: auto;
+        }
+
+        header {
+            background: #0f172a;
+            color: #ffffff;
+            padding: 40px 20px;
+            text-align: center;
+            border-bottom: 5px solid #6366f1;
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 2.5rem;
+            font-weight: 600;
+        }
+
+        header p {
+            margin: 10px 0 0;
+            font-size: 1.1rem;
+            color: #e2e8f0;
+        }
+
+        section {
+            background: #ffffff;
+            padding: 25px;
+            margin: 20px 0;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        h2 {
+            color: #0f172a;
+            font-size: 1.8rem;
+            font-weight: 600;
+            margin-bottom: 15px;
+            border-bottom: 2px solid #6366f1;
+            padding-bottom: 5px;
+        }
+
+        .endpoint {
+            background: #f8fafc;
+            padding: 20px;
+            margin-bottom: 20px;
+            border-radius: 8px;
+            border-left: 4px solid #6366f1;
+        }
+
+        .endpoint h3 {
+            margin: 0;
+            font-size: 1.4rem;
+            font-weight: 600;
+            color: #0f172a;
+        }
+
+        .endpoint p {
+            margin: 10px 0;
+            font-size: 1rem;
+            color: #475569;
+        }
+
+        .example {
+            margin: 15px 0;
+        }
+
+        .example h4 {
+            margin: 0 0 10px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: #0f172a;
+        }
+
+        pre {
+            background-color: #0f172a;
+            color: #e2e8f0;
+            padding: 15px;
+            border-radius: 6px;
+            overflow-x: auto;
+            font-size: 0.9rem;
+            margin: 10px 0;
+        }
+
+        code {
+            font-family: 'JetBrains Mono', monospace;
+            color: #818cf8;
+        }
+
+        footer {
+            text-align: center;
+            padding: 20px 0;
+            background-color: #0f172a;
+            color: white;
+            margin-top: 40px;
+            border-top: 5px solid #6366f1;
+        }
+
+        footer p {
+            margin: 0;
+            font-size: 0.9rem;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .container {
+                width: 95%;
+            }
+
+            header h1 {
+                font-size: 2rem;
+            }
+
+            header p {
+                font-size: 1rem;
+            }
+
+            h2 {
+                font-size: 1.5rem;
+            }
+
+            .endpoint h3 {
+                font-size: 1.2rem;
+            }
+
+            pre {
+                font-size: 0.8rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <header>
+            <h1>Product Management API Documentation</h1>
+            <p>Your guide to using the Product Management API for CRUD operations.</p>
+        </header>
+
+        <section id="base-url">
+            <h2>Base URL</h2>
+            <p><code>http://localhost:3000/api</code></p>
+        </section>
+
+        <section id="endpoints">
+            <h2>Endpoints</h2>
+
+            <div class="endpoint">
+                <h3>Get All Products</h3>
+                <p><strong>Endpoint:</strong> <code>/products</code></p>
+                <p><strong>Method:</strong> GET</p>
+                <p><strong>Description:</strong> Retrieves a list of all products.</p>
+
+                <div class="example">
+                    <h4>Example Request:</h4>
+                    <pre><code>GET /api/products</code></pre>
+                </div>
+
+                <div class="example">
+                    <h4>Response:</h4>
+                    <pre><code>[
+    {
+        "productId": "101",
+        "productName": "Wireless Mouse",
+        "productDesc": "Ergonomic wireless mouse with Bluetooth connectivity.",
+        "productPrice": "1200",
+        "productQty": "50"
+    },
+    {
+        "productId": "102",
+        "productName": "Mechanical Keyboard",
+        "productDesc": "RGB backlit mechanical keyboard with blue switches.",
+        "productPrice": "2000",
+        "productQty": "30"
+    }
+]</code></pre>
+                </div>
+            </div>
+
+            <div class="endpoint">
+                <h3>Get Product by ID</h3>
+                <p><strong>Endpoint:</strong> <code>/products/:id</code></p>
+                <p><strong>Method:</strong> GET</p>
+                <p><strong>Description:</strong> Retrieves a single product by its ID.</p>
+
+                <div class="example">
+                    <h4>Example Request:</h4>
+                    <pre><code>GET /api/products/101</code></pre>
+                </div>
+
+                <div class="example">
+                    <h4>Response:</h4>
+                    <pre><code>{
+    "productId": "101",
+    "productName": "Wireless Mouse",
+    "productDesc": "Ergonomic wireless mouse with Bluetooth connectivity.",
+    "productPrice": "1200",
+    "productQty": "50"
+}</code></pre>
+                </div>
+            </div>
+
+            <div class="endpoint">
+                <h3>Create a New Product</h3>
+                <p><strong>Endpoint:</strong> <code>/products</code></p>
+                <p><strong>Method:</strong> POST</p>
+                <p><strong>Description:</strong> Creates a new product.</p>
+
+                <div class="example">
+                    <h4>Example Request:</h4>
+                    <pre><code>POST /api/products
+{
+    "productId": "103",
+    "productName": "Bluetooth Headphones",
+    "productDesc": "Noise-cancelling Bluetooth headphones with long battery life.",
+    "productPrice": "2500",
+    "productQty": "25"
+}</code></pre>
+                </div>
+
+                <div class="example">
+                    <h4>Response:</h4>
+                    <pre><code>{
+    "message": "Product created successfully.",
+    "productId": "103"
+}</code></pre>
+                </div>
+            </div>
+
+            <div class="endpoint">
+                <h3>Update Product by ID</h3>
+                <p><strong>Endpoint:</strong> <code>/products/:id</code></p>
+                <p><strong>Method:</strong> PATCH</p>
+                <p><strong>Description:</strong> Updates an existing product by its ID.</p>
+
+                <div class="example">
+                    <h4>Example Request:</h4>
+                    <pre><code>PATCH /api/products/103
+{
+    "productPrice": "1600",
+    "productQty": "20"
+}</code></pre>
+                </div>
+
+                <div class="example">
+                    <h4>Response:</h4>
+                    <pre><code>{
+    "message": "Product updated successfully."
+}</code></pre>
+                </div>
+            </div>
+
+            <div class="endpoint">
+                <h3>Delete Product by ID</h3>
+                <p><strong>Endpoint:</strong> <code>/products/:id</code></p>
+                <p><strong>Method:</strong> DELETE</p>
+                <p><strong>Description:</strong> Deletes a product by its ID.</p>
+
+                <div class="example">
+                    <h4>Example Request:</h4>
+                    <pre><code>DELETE /api/products/103</code></pre>
+                </div>
+
+                <div class="example">
+                    <h4>Response:</h4>
+                    <pre><code>{
+    "message": "Product deleted successfully."
+}</code></pre>
+                </div>
+            </div>
+        </section>
+
+        <section id="error-handling">
+            <h2>Error Handling</h2>
+            <p>The API will return appropriate status codes and error messages in case of errors.</p>
+            <pre><code>{
+    "message": "Product not found."
+}</code></pre>
+        </section>
+
+        <footer>
+            <p>Product Management API</p>
+        </footer>
+    </div>
+</body>
+
+</html>

@@ -1,5 +1,6 @@
 const express = require('express');
 const app = express();
+const path = require('path')
 const dotenv = require('dotenv').config();
 const connectDatabase = require('./config/db')
 const productRouter = require('./router/product.router')
@@ -11,9 +12,12 @@ app.use(express.urlencoded({extended:true}))
 // EJS setting
 app.set('view engine','ejs');
 
+// Static file
+app.use(express.static(path.join(__dirname,'public')));
+
 // Entry Page
 app.get('/',(req,res)=>{
-    res.send('Welcome Sir')
+    res.render('index')
 })
 
 // Pass Router

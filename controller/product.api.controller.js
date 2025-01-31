@@ -1,9 +1,11 @@
+const { find } = require('lodash');
 const productModel = require('../models/product.model')
 
 // Get Product
 async function handelGetProducts(req, res){
     try {
         const products = await productModel.find({}).select('-_id');
+        if(!products){ return res.status(400).json({message : `Product Not Found`})}
         return res.status(200).json(products);
     } catch (error) {
         console.log("Error Occured ", error);
@@ -15,6 +17,7 @@ async function handelGetProductsByID(req, res){
     try {
         const findId = req.params.id;
         const oneProduct = await productModel.findOne({ productId: findId }).select('-_id');
+        if(!oneProduct){ return res.status(400).json({message : `Product Not Found With Id ${findId}`})}
         return res.status(200).json(oneProduct);
 
     } catch (error) {
@@ -49,6 +52,7 @@ async function handelUpdateProductsById(req, res){
     try {
         const findId = req.params.id;
         const updateProduct = await productModel.findOneAndUpdate({ productId: findId }, req.body, { new: true });
+        if(!updateProduct){return res.status(400).json({message : `Product Not Found With Id ${findId}`})}
         console.log("Product Updated");
         return res.status(201).json({ message: 'Product is Updated.' })
     } catch (error) {
@@ -62,6 +66,7 @@ async function handelDeleteProductsById(req, res){
     try {
         const findId = req.params.id;
         const deleteProduct = await productModel.findOneAndDelete({ productId: findId });
+        if(!deleteProduct){ return res.status(400).json({message : `Product Not Found With Id ${findId}`})}
         console.log("Product Deleted");
         return res.status(201).json({ message: 'Product is Deleted.' })
     } catch (error) {
